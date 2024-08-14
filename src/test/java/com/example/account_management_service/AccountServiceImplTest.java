@@ -61,18 +61,14 @@ public class AccountServiceImplTest {
     public void testGetAccountById_NotFound() {
         UUID id = UUID.randomUUID();
 
-        // Simulate account not found
         when(accountRepository.findById(id)).thenReturn(Optional.empty());
 
-        // Verify that an exception is thrown
         Exception exception = assertThrows(RuntimeException.class, () -> {
             accountService.getAccountById(id);
         });
 
-        // Check the exception message
         assertEquals("Account not found", exception.getMessage());
 
-        // Verify that findById was called once
         verify(accountRepository, times(1)).findById(id);
     }
 
