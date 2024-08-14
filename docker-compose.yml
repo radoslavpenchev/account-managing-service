@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
+      MYSQL_DATABASE: account_management
+   
+    ports:
+      - "3307:3306"
+    networks:
+      - account_management
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/account_management
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+    networks:
+      - account_management
+
+networks:
+  account_management:
