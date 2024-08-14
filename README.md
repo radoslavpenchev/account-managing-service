@@ -7,6 +7,7 @@
    *in terminal*
    
    git clone https://github.com/radoslavpenchev/account-managing-service.git
+   
    cd account-management-service
 
 3. **Build and start the containers**
